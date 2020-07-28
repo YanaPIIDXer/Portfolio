@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circieci/node:4.8.2
+      - image: node:4.8.2
     steps:
       - checkout
       - run: echo "CircleCI Test"
