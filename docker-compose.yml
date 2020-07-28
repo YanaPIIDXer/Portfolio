@@ -9,6 +9,10 @@ services:
             - ./InnerAPI:/app
         ports:
             - "3000:3000"
+        environment:
+            DATABASE_HOST: db
+            DATABASE_USERNAME: develop
+            DATABASE_PASSWORD: develop
         depends_on:
             - db
 
