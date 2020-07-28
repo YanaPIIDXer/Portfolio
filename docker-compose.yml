@@ -11,8 +11,11 @@ services:
             - "3000:3000"
         environment:
             DATABASE_HOST: db
-            DATABASE_USERNAME: develop
-            DATABASE_PASSWORD: develop
+            # HACK:developだと権限が設定できておらず、止む無くrootで入ってる。
+            #      コンソールから入り込んで権限振ったら解決するだろうが・・・
+            DATABASE_USERNAME: root
+            DATABASE_PASSWORD: root
+            DATABASE_NAME: slot_sns
         depends_on:
             - db
 
