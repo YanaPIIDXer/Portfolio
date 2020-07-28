@@ -1,7 +1,18 @@
 version: 2.1
 jobs:
-  build:
+  test:
+    machine: true
     steps:
-        run:
-            name: Test
-            command: echo "CI Test"
+      - checkout
+      - run:
+        command: echo "Circle CI Test"
+workflows:
+  build:
+    jobs:
+      - test:
+        pre-steps:
+          - run:
+            command: echo "Pre Step"
+        post-steps:
+          - run:
+            command: echo "Post Step"
