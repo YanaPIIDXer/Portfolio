@@ -1,18 +1,8 @@
 version: 2.1
 jobs:
-  test:
-    machine: true
+  build:
+    docker:
+      - image: circieci/node:4.8.2
     steps:
       - checkout
-      - run:
-        command: echo "Circle CI Test"
-workflows:
-  build:
-    jobs:
-      - test:
-        pre-steps:
-          - run:
-            command: echo "Pre Step"
-        post-steps:
-          - run:
-            command: echo "Post Step"
+      - run: echo "CircleCI Test"
