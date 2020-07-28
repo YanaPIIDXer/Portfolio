@@ -28,7 +28,7 @@ services:
         ports:
             - "3306:3306"
         volumes:
-            - ./MySQL/data:/var/lib/mysql
+            - ./DataStore/MySQL/data:/var/lib/mysql
         environment:
             MYSQL_ROOT_PASSWORD: root
             MYSQL_USER: develop
