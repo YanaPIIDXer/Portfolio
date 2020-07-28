@@ -1,0 +1,3 @@
+[submodule "InnerAPI"]
+	path = InnerAPI
+	url = https://github.com/YanaPIIDXer/SlotSNS_InnerAPI.git

@@ -1,5 +1,24 @@
 version: '3'
 services:
+    # InnerAPI(Rails)
+    inner_api:
+        build:
+            context: ./InnerAPI
+        command: rails s -p 3000 -b "0.0.0.0"
+        volumes:
+            - ./InnerAPI:/app
+        ports:
+            - "3000:3000"
+        environment:
+            DATABASE_HOST: db
+            # HACK:developだと権限が設定できておらず、止む無くrootで入ってる。
+            #      コンソールから入り込んで権限振ったら解決するだろうが・・・
+            DATABASE_USERNAME: root
+            DATABASE_PASSWORD: root
+            DATABASE_NAME: slot_sns
+        depends_on:
+            - db
+
     # Database(MySQL)
     db:
         image: mysql:5.7
