@@ -12,6 +12,7 @@ services:
             MYSQL_ROOT_PASSWORD: root
             MYSQL_USER: develop
             MYSQL_PASSWORD: develop
+            TZ: Asia/Tokyo
 
     # Redmine
     redmine:
@@ -36,5 +37,6 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: redmine
             MYSQL_DATABASE: redmine
+            TZ: Asia/Tokyo
         volumes:
             - ./Redmine/DB:/var/lib/mysql
