@@ -1,6 +1,6 @@
 variable "mysql_username" {}
 variable "mysql_password" {}
-
+/*
 module "MySQL_SecurityGroup" {
   source = "terraform-aws-modules/security-group/aws"
 
@@ -31,3 +31,4 @@ module "MySQLServer" {
     subnet_ids = module.VPC.private_subnets
     skip_final_snapshot = true
 }
+*/
