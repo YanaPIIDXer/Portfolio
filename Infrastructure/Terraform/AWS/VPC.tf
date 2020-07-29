@@ -16,14 +16,3 @@ module "VPC" {
     Environment = "dev"
   }
 }
-
-module "SecurityGroup" {
-  source = "terraform-aws-modules/security-group/aws"
-
-  name = "SecurityGroup"
-  description = "SlotSNS Security Group"
-  vpc_id = module.VPC.vpc_id
-
-  ingress_cidr_blocks = ["0.0.0.0/0"]
-  ingress_rules = ["ssh-tcp"]
-}
