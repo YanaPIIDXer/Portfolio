@@ -1,4 +1,3 @@
-
 module "SSHServer" {
   source = "terraform-aws-modules/ec2-instance/aws"
 

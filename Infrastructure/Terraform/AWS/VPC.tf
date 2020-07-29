@@ -1,4 +1,3 @@
-
 module "VPC" {
   source = "terraform-aws-modules/vpc/aws"
   
