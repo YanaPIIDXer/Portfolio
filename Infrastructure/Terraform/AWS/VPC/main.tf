@@ -34,3 +34,20 @@ resource "aws_route_table_association" "SlotSNS_RouteTable_Association_Public" {
     subnet_id = aws_subnet.SlotSNS_Subnet_Public.id
     route_table_id = aws_route_table.SlotSNS_RouteTable_Public.id
 }
+
+resource "aws_security_group" "SlotSNS_SecurityGroup_Public" {
+    name = "SlotSNS_SecurityGroup_Public"
+    vpc_id = aws_vpc.SlotSNS_VPC.id
+    ingress {
+        from_port = 22
+        to_port = 22
+        protocol = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+    egress {
+        from_port = 0
+        to_port = 0
+        protocol = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+}
