@@ -31,6 +31,8 @@ module "SecurityGroup" {
 
   ingress_cidr_blocks = ["0.0.0.0/16"]
   ingress_rules = ["ssh-tcp"]
+  egress_cidr_blocks = ["0.0.0.0/16"]
+  egress_rules = ["ssh-tcp"]
 }
 
 module "SSHServer" {
