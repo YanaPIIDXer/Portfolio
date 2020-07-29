@@ -15,7 +15,7 @@ module "TaskDef_InnerAPI" {
     family = "InnerAPI"
     // 仮にHTTPサーバでも立ててみる。
     container_name = "nginx"
-    image = "nginx:1.14"
+    image = "nginx:latest"
     container_port = 80
     host_port = 80
 }
