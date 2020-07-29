@@ -4,7 +4,7 @@ provider "aws" {
 }
 
 module "VPC" {
-  source = "./terraform-aws-vpc-2.44.0"
+  source = "./AWSModule_VPC"
   
   name = "SlotSNS_VPC"
   cidr = "10.0.0.0/16"
