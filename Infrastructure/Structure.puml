@@ -18,12 +18,12 @@ Cloud(Cloud, AWS, "AWS Cloud") {
     Region(Region, ap-northeast-1, "Asia/Tokyo") {
         VirtualPrivateCloudVPC(VPC, VPC, "VPC") {
             AvailabilityZone(AZ_1a, "1a") {
-                VPCSubnetPrivate(Subnet1, Private, "10.0.0.1/24") {
+                VPCSubnetPublic(Subnet2, Public, "10.0.1.0/24") {
+                    EC2(SSHServer, EC2, "SSHサーバ")
+                }
+                VPCSubnetPrivate(Subnet1, Private, "10.0.2.0/24") {
                     RDS(DB, RDS, "MySQL")
                     ElasticContainerService(ECS, ECS, "ECS")
-                }
-                VPCSubnetPublic(Subnet2, Public, "10.0.0.2/24") {
-                    EC2(SSHServer, EC2, "SSHサーバ")
                 }
             }
         }
