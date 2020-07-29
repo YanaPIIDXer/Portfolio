@@ -1,8 +1,12 @@
+variable "key_name" {
+}
+
 provider "aws" {
   version = "~> 2.0"
   region  = "ap-northeast-1"
 }
 
+/*
 module "VPC" {
   source = "terraform-aws-modules/vpc/aws"
   
@@ -13,7 +17,7 @@ module "VPC" {
   public_subnets = ["10.0.1.0/24"]
   private_subnets = ["10.0.2.0/24"]
 
-  enable_nat_gateway = true
+  enable_nat_gateway = false
   enable_vpn_gateway = true
 
   tags = {
@@ -34,7 +38,7 @@ module "SecurityGroup" {
   egress_cidr_blocks = ["0.0.0.0/16"]
   egress_rules = ["ssh-tcp"]
 }
-
+*/
 module "SSHServer" {
   source = "terraform-aws-modules/ec2-instance/aws"
 
@@ -42,6 +46,9 @@ module "SSHServer" {
   instance_count = 1
   ami = "ami-066b76d09a3d3ff4e"
   instance_type = "t2.micro"
-  vpc_security_group_ids = [module.SecurityGroup.this_security_group_id]
-  subnet_id = module.VPC.public_subnets[0]
+  vpc_security_group_ids = ["sg-0203646273a81e5bb"]
+  subnet_id = "subnet-12070b49"
+  key_name = var.key_name
+# vpc_security_group_ids = [module.SecurityGroup.this_security_group_id]
+#  subnet_id = module.VPC.public_subnets[0]
 }
