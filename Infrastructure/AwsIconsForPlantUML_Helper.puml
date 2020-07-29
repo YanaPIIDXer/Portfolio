@@ -1,0 +1,33 @@
+@startuml
+!define AWSPUML https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist
+
+' アベイラビリティゾーン
+!definelong AvailabilityZone(e_alias, e_name)
+skinparam rectangle<<AvailabilityZone>> {
+    BackgroundColor AWS_BG_COLOR
+    BorderColor blue
+    BorderStyle Dashed
+}
+rectangle "==e_name" <<AvailabilityZone>> as e_alias
+!enddefinelong
+
+' ↓色々と試して実装中。
+!ifdef ENABLE_HACK
+' 元の挙動をHACKして、よく見かける構成図の形にする。
+!definelong AWSEntityColoring(e_stereo)
+skinparam rectangle<<e_stereo>> {
+    BackgroundColor AWS_BG_COLOR
+    BorderColor AWS_BORDER_COLOR    
+}
+!enddefinelong
+
+!definelong AWSEntity(e_alias, e_label, e_techn, e_color, e_sprite, e_stereo)
+rectangle "<color:e_color><$e_sprite></color>" as e_alias
+!enddefinelong
+
+!definelong AWSEntity(e_alias, e_label, e_techn, e_descr, e_color, e_sprite, e_stereo)
+rectangle "<color:e_color><$e_sprite></color>\n\n==e_label" <<e_stereo>> as e_alias
+!enddefinelong
+!endif
+
+@enduml
