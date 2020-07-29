@@ -7,3 +7,7 @@ resource "aws_vpc" "SlotSNS_VPC" {
       Name = "SlotSNS_VPC"
     }
 }
+
+resource "aws_internet_gateway" "SlotSNS_InternetGateway" {
+    vpc_id = aws_vpc.SlotSNS_VPC.id
+}
