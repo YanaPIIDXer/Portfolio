@@ -1,6 +1,6 @@
 variable "mysql_username" {}
 variable "mysql_password" {}
-/*
+
 module "MySQL_SecurityGroup" {
   source = "terraform-aws-modules/security-group/aws"
 
@@ -29,6 +29,8 @@ module "MySQLServer" {
     password = var.mysql_password
     vpc_security_group_ids = [module.MySQL_SecurityGroup.this_security_group_id]
     subnet_ids = module.VPC.private_subnets
+    // ↓自動バックアップ無効。
+    //  これがないとDestroyした時にOptionGroupが削除できないスナップショットを抱えて地縛霊になる。
+    backup_retention_period = 0
     skip_final_snapshot = true
 }
-*/
