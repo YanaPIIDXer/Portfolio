@@ -10,8 +10,8 @@ module "VPC" {
   cidr = "10.0.0.0/16"
 
   azs = ["ap-northeast-1a"]
-  private_subnets = ["10.0.0.1/24"]
-  public_subnets = ["10.0.0.2/24"]
+  public_subnets = ["10.0.1.0/24"]
+  private_subnets = ["10.0.2.0/24"]
 
   enable_nat_gateway = true
   enable_vpn_gateway = true
@@ -20,4 +20,26 @@ module "VPC" {
     Terraform = "true"
     Environment = "dev"
   }
+}
+
+module "SecurityGroup" {
+  source = "terraform-aws-modules/security-group/aws"
+
+  name = "SecurityGroup"
+  description = "SlotSNS Security Group"
+  vpc_id = module.VPC.vpc_id
+
+  ingress_cidr_blocks = ["0.0.0.0/16"]
+  ingress_rules = ["ssh-tcp"]
+}
+
+module "SSHServer" {
+  source = "terraform-aws-modules/ec2-instance/aws"
+
+  name = "SlotSNS_SSHServer"
+  instance_count = 1
+  ami = "ami-066b76d09a3d3ff4e"
+  instance_type = "t2.micro"
+  vpc_security_group_ids = [module.SecurityGroup.this_security_group_id]
+  subnet_id = module.VPC.public_subnets[0]
 }
