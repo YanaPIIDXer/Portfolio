@@ -21,3 +21,7 @@ resource "aws_ecs_task_definition" "default" {
     ]
     EOL
 }
+
+output "arn" {
+    value = aws_ecs_task_definition.default.arn
+}

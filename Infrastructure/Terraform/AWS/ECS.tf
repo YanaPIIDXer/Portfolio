@@ -8,3 +8,13 @@ module "TaskDef_InnerAPI" {
     container_port = 80
     host_port = 80
 }
+
+module "Cluster_InnerAPI" {
+    source = "./ECS"
+
+    name = "InnerAPI"
+    family = "InnerAPI"
+    task = module.TaskDef_InnerAPI.arn
+    security_groups = []
+    subnets = [module.VPC.public_subnets[0]]
+}
