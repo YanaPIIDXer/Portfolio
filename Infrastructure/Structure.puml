@@ -1,4 +1,4 @@
-@startuml
+@startuml Structure
 !define AWSPuml https://raw.githubusercontent.com/awslabs/aws-icons-for-plantuml/master/dist
 !includeurl AWSPuml/AWSCommon.puml
 !includeurl AWSPuml/GroupIcons/Cloud.puml
@@ -7,6 +7,7 @@
 !includeurl AWSPuml/GroupIcons/VPCSubnetPrivate.puml
 !includeurl AWSPuml/GroupIcons/VPCSubnetPublic.puml
 !includeurl AWSPuml/Database/RDS.puml
+!includeurl AWSPuml/Compute/EC2.puml
 !includeurl AWSPuml/Compute/EC2ContainerRegistry.puml
 !includeurl AWSPuml/Compute/EC2ContainerRegistryImage.puml
 !includeurl AWSPuml/Compute/ElasticContainerService.puml
@@ -22,6 +23,7 @@ Cloud(Cloud, AWS, "AWS Cloud") {
                     ElasticContainerService(ECS, ECS, "ECS")
                 }
                 VPCSubnetPublic(Subnet2, Public, "10.0.0.2/24") {
+                    EC2(SSHServer, EC2, "SSHサーバ")
                 }
             }
         }
