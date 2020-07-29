@@ -1,6 +1,6 @@
 variable "mysql_username" {}
 variable "mysql_password" {}
-
+/*
 module "MySQLServer" {
     source = "terraform-aws-modules/rds/aws"
 
@@ -19,3 +19,4 @@ module "MySQLServer" {
     vpc_security_group_ids = []
     subnet_ids = module.VPC.private_subnets
 }
+*/
