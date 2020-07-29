@@ -6,7 +6,6 @@ provider "aws" {
   region  = "ap-northeast-1"
 }
 
-/*
 module "VPC" {
   source = "terraform-aws-modules/vpc/aws"
   
@@ -33,12 +32,10 @@ module "SecurityGroup" {
   description = "SlotSNS Security Group"
   vpc_id = module.VPC.vpc_id
 
-  ingress_cidr_blocks = ["0.0.0.0/16"]
+  ingress_cidr_blocks = ["0.0.0.0/0"]
   ingress_rules = ["ssh-tcp"]
-  egress_cidr_blocks = ["0.0.0.0/16"]
-  egress_rules = ["ssh-tcp"]
 }
-*/
+
 module "SSHServer" {
   source = "terraform-aws-modules/ec2-instance/aws"
 
@@ -46,9 +43,7 @@ module "SSHServer" {
   instance_count = 1
   ami = "ami-066b76d09a3d3ff4e"
   instance_type = "t2.micro"
-  vpc_security_group_ids = ["sg-0203646273a81e5bb"]
-  subnet_id = "subnet-12070b49"
   key_name = var.key_name
-# vpc_security_group_ids = [module.SecurityGroup.this_security_group_id]
-#  subnet_id = module.VPC.public_subnets[0]
+  vpc_security_group_ids = [module.SecurityGroup.this_security_group_id]
+  subnet_id = module.VPC.public_subnets[0]
 }
