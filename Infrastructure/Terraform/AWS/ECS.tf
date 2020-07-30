@@ -27,10 +27,9 @@ module "TaskDef_InnerAPI" {
     source = "./ECS/TaskDefinition"
 
     family = "InnerAPI"
-    // 仮にHTTPサーバでも立ててみる。
-    container_name = "nginx"
-    image = "nginx:latest"
-    container_port = 80
+    container_name = "InnerAPI"
+    image = "inner_api:latest"
+    container_port = 3000
     host_port = 80
     protocol = "tcp"
 }
