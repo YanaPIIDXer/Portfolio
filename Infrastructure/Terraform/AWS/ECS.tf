@@ -73,7 +73,7 @@ module "InnerAPI_Server" {
     subnet_id = module.VPC.public_subnets[0]
     iam_instance_profile = aws_iam_instance_profile.ECS_Role_Profile.name
     user_data = <<USERDATA
-    #!/bin/bash
-    echo ECS_CLUSTER=InnerAPI >> /etc/ecs/ecs.config
+#!/bin/bash
+echo ECS_CLUSTER=InnerAPI >> /etc/ecs/ecs.config
     USERDATA
 }
