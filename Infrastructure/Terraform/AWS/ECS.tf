@@ -81,6 +81,7 @@ module "InnerAPI_Server" {
     instance_count = 1
     ami = "ami-0763fff45988661c8"     // ECSエージェント入りのami
     instance_type = "t2.micro"
+    key_name = var.key_name
     vpc_security_group_ids = [
         module.InnerAPI_SecurityGroup.this_security_group_id,
         module.ECSAgent_SecurityGroup.this_security_group_id
