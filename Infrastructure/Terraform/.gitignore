@@ -4,3 +4,4 @@
 */terraform.tfvars
 */.terraform.tfstate.lock
 */.terraform.tfstate.lock.info
+*/*.png
