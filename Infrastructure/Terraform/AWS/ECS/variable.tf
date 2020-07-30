@@ -3,3 +3,8 @@ variable "family" {}
 variable "task" {}
 variable "security_groups" {}
 variable "subnets" {}
+variable "key_name" {}
+variable "subnet_id" {}
+variable "vpc_id" {}
+variable "security_group_id" {}
+variable "cluster_name" {}
