@@ -72,8 +72,5 @@ module "EC2_Server" {
     user_data = <<USERDATA
 #!/bin/bash
 echo ECS_CLUSTER=${var.cluster_name} >> /etc/ecs/ecs.config
-echo ECS_ENGINE_AUTH_TYPE=docker >> /etc/ecs/ecs.config
-echo 'ECS_ENGINE_AUTH_DATA={"https://${var.docker_uri}/":{"username":"${var.docker_user_name}","password":"${var.docker_password}","email":"${var.docker_email}"}}' >> /etc/ecs/ecs.config
-ECS_LOGLEVEL=debug
-USERDATA
+    USERDATA
 }
