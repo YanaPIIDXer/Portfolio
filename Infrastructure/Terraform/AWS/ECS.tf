@@ -1,3 +1,28 @@
+data "aws_iam_policy_document" "EC2_AssumeRole" {
+    statement {
+        actions = ["sts:AssumeRole"]
+        principals {
+            type = "Service"
+            identifiers = ["ec2.amazonaws.com"]
+        }
+    }
+}
+
+resource "aws_iam_role" "ECS_Role" {
+    name = "ECSRole"
+    assume_role_policy = data.aws_iam_policy_document.EC2_AssumeRole.json
+}
+
+resource "aws_iam_role_policy_attachment" "ECS_RoleAttachment_ServiceAccess" {
+    role = aws_iam_role.ECS_Role.name
+    policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
+}
+
+resource "aws_iam_role_policy_attachment" "ECS_RoleAttachment_ContainerAccess" {
+    role = aws_iam_role.ECS_Role.name
+    policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
+}
+
 module "InnerAPI_SecurityGroup" {
     source = "terraform-aws-modules/security-group/aws"
 
