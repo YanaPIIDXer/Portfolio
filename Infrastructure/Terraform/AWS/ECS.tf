@@ -1,4 +1,5 @@
 // TODO:variable.tf作って纏めるべきなんじゃないかな・・・？
+variable "docker_uri" {}
 variable "docker_user_name" {}
 variable "docker_password" {}
 variable "docker_email" {}
@@ -38,6 +39,7 @@ module "Cluster_InnerAPI" {
     subnet_id = module.VPC.public_subnets[0]
     security_groups = [module.InnerAPI_SecurityGroup.this_security_group_id]
     subnets = [module.VPC.public_subnets[0]]
+    docker_uri = var.docker_uri
     docker_user_name = var.docker_user_name
     docker_password =var.docker_password
     docker_email = var.docker_email
