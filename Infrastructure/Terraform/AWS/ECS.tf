@@ -56,6 +56,11 @@ resource "aws_iam_role_policy_attachment" "ECS_RoleAttachment_ContainerAccess" {
     policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
 }
 
+resource "aws_iam_instance_profile" "ECS_Role_Profile" {
+    name = "ECS_Role_Profile"
+    role = aws_iam_role.ECS_Role.name
+}
+
 module "InnerAPI_Server" {
     source = "terraform-aws-modules/ec2-instance/aws"
 
@@ -66,7 +71,7 @@ module "InnerAPI_Server" {
     key_name = var.key_name
     vpc_security_group_ids = [module.InnerAPI_SecurityGroup.this_security_group_id]
     subnet_id = module.VPC.public_subnets[0]
-    iam_instance_profile = aws_iam_role.ECS_Role.name
+    iam_instance_profile = aws_iam_instance_profile.ECS_Role_Profile.name
     user_data = <<USERDATA
             #!/bin/bash
             echo ECS_CLUSTER=InnerAPI >> /etc/ecs/ecs.config
