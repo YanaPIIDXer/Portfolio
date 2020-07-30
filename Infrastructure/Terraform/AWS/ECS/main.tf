@@ -22,6 +22,7 @@ resource "aws_ecs_service" "default" {
     task_definition = var.task
     desired_count = 1
     launch_type = "EC2"
+    depends_on = [module.EC2_Server]
 }
 
 data "aws_iam_policy_document" "EC2_AssumeRole" {
