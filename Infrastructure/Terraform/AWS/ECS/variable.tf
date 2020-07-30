@@ -8,3 +8,6 @@ variable "subnet_id" {}
 variable "vpc_id" {}
 variable "security_group_id" {}
 variable "cluster_name" {}
+variable "docker_user_name" {}
+variable "docker_password" {}
+variable "docker_email" {}
