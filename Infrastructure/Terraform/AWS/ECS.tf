@@ -18,6 +18,7 @@ module "TaskDef_InnerAPI" {
     image = "nginx:latest"
     container_port = 80
     host_port = 80
+    protocol = "tcp"
 }
 
 module "Cluster_InnerAPI" {

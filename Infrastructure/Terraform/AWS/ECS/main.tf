@@ -8,8 +8,4 @@ resource "aws_ecs_service" "default" {
     task_definition = var.task
     desired_count = 1
     launch_type = "EC2"
-    network_configuration {
-        security_groups = var.security_groups
-        subnets = var.subnets
-    }
 }
