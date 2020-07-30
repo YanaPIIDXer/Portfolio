@@ -5,9 +5,9 @@ variable "container_port" {}
 variable "host_port" {}
 variable "protocol" {}
 variable "cpu" {
-    default = "256"
+    default = "1024"
 }
 
 variable "memory" {
-    default = "512"
+    default = "800"
 }
