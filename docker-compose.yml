@@ -34,30 +34,3 @@ services:
             MYSQL_USER: develop
             MYSQL_PASSWORD: develop
             TZ: Asia/Tokyo
-
-    # Redmine
-    redmine:
-        image: redmine
-        ports:
-            - 4000:3000
-        volumes:
-            - ./Redmine/Plugins:/usr/src/redmine/plugins
-            - ./Redmine/Themes:/usr/src/redmine/themes
-        environment:
-            REDMINE_DB_MYSQL: redmine_db
-            REDMINE_DB_PASSWORD: redmine
-        depends_on:
-            - redmine_db
-
-    # Redmine DB
-    redmine_db:
-        image: mysql:5.7
-        command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --explicit_defaults_for_timestamp --innodb-use-native-aio=0
-        ports:
-            - "3307:3306"
-        environment:
-            MYSQL_ROOT_PASSWORD: redmine
-            MYSQL_DATABASE: redmine
-            TZ: Asia/Tokyo
-        volumes:
-            - ./Redmine/DB:/var/lib/mysql
