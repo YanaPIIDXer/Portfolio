@@ -17,7 +17,7 @@ module "database" {
   subnets    = [module.vpc.private_subnets[0].id, module.vpc.private_subnets[1].id]
   root_data = {
     name     = "root"
-    password = "root"
+    password = "password"
   }
   security_groups = [module.database_sg.id]
 }
