@@ -8,6 +8,32 @@ module "inner_api_task_definition" {
   host_port        = 0
   task_role_arn    = var.ecs_task_role_arn
   execute_role_arn = var.ecs_task_role_arn
+  environments = [
+    {
+      "name" : "DATABASE_HOST",
+      "value" : "${module.database.address}"
+    },
+    {
+      "name" : "DATABASE_USERNAME",
+      "value" : "root"
+    },
+    {
+      "name" : "DATABASE_PASSWORD",
+      "value" : "password"
+    },
+    {
+      "name" : "DATABASE_NAME",
+      "value" : "slot_sns"
+    },
+    {
+      "name" : "BUNDLER_VERSION",
+      "value" : "2.0.2"
+    },
+    {
+      "name" : "RAILS_ENV",
+      "value" : "development"
+    }
+  ]
 }
 
 module "inner_api_sg" {

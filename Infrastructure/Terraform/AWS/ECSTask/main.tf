@@ -13,6 +13,7 @@ resource "aws_ecs_task_definition" "default" {
             "name": "${var.container_name}",
             "image": "${var.container_image}",
             "memory": ${var.container_memory},
+            "environment": ${jsonencode(var.environments)},
             "portMappings":
             [
                 {

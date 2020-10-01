@@ -14,7 +14,7 @@ variable "memory" {
 }
 
 variable "container_memory" {
-  default = 128
+  default     = 128
   description = "コンテナのメモリ"
 }
 
@@ -43,4 +43,9 @@ variable "task_role_arn" {
 variable "execute_role_arn" {
   default     = ""
   description = "実行ロールのARN"
+}
+
+variable "environments" {
+  default     = []
+  description = "環境変数とその値の配列"
 }
