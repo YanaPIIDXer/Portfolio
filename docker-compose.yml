@@ -4,7 +4,6 @@ services:
     inner_api:
         build:
             context: ./InnerAPI
-        command: rails s -p 3000 -b "0.0.0.0"
         volumes:
             - ./InnerAPI:/app
             - ./DataStore/InnerAPI/BundleInstall:/app/vendor/bundle
