@@ -25,3 +25,37 @@ module "vpc" {
     }
   ]
 }
+
+// ルートテーブル（public）
+module "public_route_table" {
+  source  = "./RouteTable"
+  name    = "SlotSNS_RouteTable_Public"
+  vpc_id  = module.vpc.vpc_id
+  subnets = module.vpc.public_subnets
+  gateway_routes = [
+    {
+      id         = module.vpc.internet_gateway_id
+      cidr_block = "0.0.0.0/0"
+    }
+  ]
+}
+
+// NATゲートウェイ
+module "nat_gateway" {
+  source = "./NATGateway"
+  subnet = module.vpc.public_subnets[0]
+}
+
+// ルートテーブル(Private)
+module "privae_route_table" {
+  source  = "./RouteTable"
+  name    = "SlotSNS_RouteTable_Private"
+  vpc_id  = module.vpc.vpc_id
+  subnets = module.vpc.public_subnets
+  nat_gateway_routes = [
+    {
+      id         = module.nat_gateway.id
+      cidr_block = "0.0.0.0/0"
+    }
+  ]
+}
