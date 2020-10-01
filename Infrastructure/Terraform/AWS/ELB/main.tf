@@ -10,7 +10,7 @@ resource "aws_lb" "default" {
 resource "aws_lb_target_group" "group" {
   count       = var.for_blue_green ? 2 : 1
   name        = join("", list(var.name, count.index + 1))
-  port        = 80
+  port        = var.listen_port
   protocol    = "HTTP"
   target_type = "instance"
   vpc_id      = var.vpc_id
@@ -26,7 +26,7 @@ resource "aws_lb_target_group" "group" {
 
 resource "aws_lb_listener" "listener" {
     load_balancer_arn = aws_lb.default.arn
-    port     = 80
+    port     = var.listen_port
     protocol = "HTTP"
     default_action {
       type             = "forward"

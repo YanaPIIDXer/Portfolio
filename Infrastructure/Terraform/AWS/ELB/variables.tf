@@ -7,6 +7,11 @@ variable "vpc_id" {
     description = "VPCのID"
 }
 
+variable "listen_port" {
+    default = 80
+    description = "ポート番号"
+}
+
 variable "subnets" {
     description = "サブネットの配列"
 }

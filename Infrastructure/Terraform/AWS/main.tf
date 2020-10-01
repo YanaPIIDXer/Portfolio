@@ -51,7 +51,7 @@ module "privae_route_table" {
   source  = "./RouteTable"
   name    = "SlotSNS_RouteTable_Private"
   vpc_id  = module.vpc.vpc_id
-  subnets = module.vpc.public_subnets
+  subnets = module.vpc.private_subnets
   nat_gateway_routes = [
     {
       id         = module.nat_gateway.id

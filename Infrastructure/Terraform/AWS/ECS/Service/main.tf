@@ -16,6 +16,7 @@ module "load_balancer" {
   source          = "../../ELB"
   name            = "${var.name}-LB"
   vpc_id          = var.vpc_id
+  listen_port     = var.container_port
   subnets         = var.subnets
   security_groups = [module.load_balancer_sg.id]
 }

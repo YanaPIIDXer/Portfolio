@@ -1,10 +1,9 @@
 // データベースのセキュリティグループ
 module "database_sg" {
-  source = "./SecurityGroup"
-  vpc_id = module.vpc.vpc_id
-  subnets = module.vpc.private_subnets
+  source         = "./SecurityGroup"
+  vpc_id         = module.vpc.vpc_id
   gateway_routes = [module.vpc.internet_gateway_id]
-  enable_mysql = true
+  enable_mysql   = true
 }
 
 // データベース
