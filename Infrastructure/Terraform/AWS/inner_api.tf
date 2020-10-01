@@ -55,7 +55,7 @@ module "inner_api_container" {
   source              = "./ECS"
   name                = "SlotSNSInnerAPI"
   vpc_id              = module.vpc.vpc_id
-  subnets             = [module.vpc.private_subnets[1].id, module.vpc.public_subnets[0].id]
+  subnets             = [module.vpc.private_subnets[0].id, module.vpc.private_subnets[1].id]
   task_definition_arn = module.inner_api_task_definition.arn
   security_groups     = [module.inner_api_sg.id]
   key_name            = var.key_name
